@@ -1,0 +1,1968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concentric Silicon | Global Chip Distribution</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --primary: #0a0f1c;
+  --primary-light: #111827;
+  --accent: #EAC06A;
+  --accent-bright: #f0d080;
+  --accent-glow: rgba(234, 192, 106, 0.15);
+  --text: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --surface: #1e293b;
+  --surface-light: #334155;
+  --border: rgba(148, 163, 184, 0.1);
+  --gradient-1: linear-gradient(135deg, #0a0f1c 0%, #1a1f3a 100%);
+  --gradient-hero: linear-gradient(180deg, rgba(10,15,28,0) 0%, rgba(10,15,28,0.8) 100%);
+  --font-heading: 'Raleway', sans-serif;
+  --font-body: 'Source Sans 3', sans-serif;
+  --brand-gold: #EAC06A;
+  --brand-black: #050605;
+  --brand-cream: #F5EADB;
+  --pin-open: #EAC06A;
+  --pin-soon: #f59e0b;
+  --pin-certified: #10b981;
+}
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--primary);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .nav-logo, .hero-badge, .section-tag, .stat-number, .stat-label, .why-number {
+  font-family: var(--font-heading);
+}
+
+/* ─── NAVIGATION ─── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0 clamp(2rem, 5vw, 6rem);
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(10, 15, 28, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.4s ease;
+}
+
+nav.scrolled {
+  background: rgba(10, 15, 28, 0.95);
+}
+
+.nav-logo {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: var(--brand-gold);
+}
+
+.nav-logo-svg {
+  height: 32px;
+  width: auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.nav-links a:hover { color: var(--text); }
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.3s;
+}
+
+.nav-links a:hover::after { width: 100%; }
+
+.nav-cta {
+  padding: 0.6rem 1.5rem !important;
+  background: var(--accent) !important;
+  color: white !important;
+  border-radius: 4px;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em;
+  transition: all 0.3s !important;
+}
+
+.nav-cta:hover {
+  background: var(--accent-bright) !important;
+  transform: translateY(-1px);
+}
+
+.nav-cta::after { display: none !important; }
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-1);
+}
+
+/* Animated globe / map canvas */
+.globe-canvas {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+}
+
+.globe-canvas canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(10,15,28,0.3) 0%, rgba(10,15,28,0.85) 70%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  padding: 0 2rem;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  border: 1px solid rgba(234, 192, 106, 0.3);
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+  margin-bottom: 2rem;
+  background: rgba(234, 192, 106, 0.05);
+  animation: fadeInUp 0.8s ease both;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 0.8s ease 0.15s both;
+}
+
+.hero h1 span {
+  background: linear-gradient(135deg, var(--accent-bright), var(--brand-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero p {
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  color: var(--text-muted);
+  max-width: 640px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+  font-weight: 400;
+  animation: fadeInUp 0.8s ease 0.3s both;
+}
+
+.hero .hero-tagline {
+  font-family: var(--font-heading);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-weight: 500;
+  font-style: italic;
+  color: var(--text);
+  letter-spacing: 0.02em;
+  margin-bottom: 1rem;
+  animation: fadeInUp 0.8s ease 0.22s both;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.8s ease 0.45s both;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.3s;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--brand-black);
+  box-shadow: 0 4px 20px rgba(234,192,106,0.3);
+}
+
+.btn-primary:hover {
+  background: var(--accent-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 30px rgba(234,192,106,0.4);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--surface-light);
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent-bright);
+  background: var(--accent-glow);
+}
+
+/* Hero scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  animation: fadeInUp 0.8s ease 0.6s both;
+}
+
+.scroll-indicator span {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: var(--surface-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-line::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: var(--accent);
+  animation: scrollDown 2s ease infinite;
+}
+
+/* ─── STATS BAR ─── */
+.stats-bar {
+  background: var(--primary-light);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 3.5rem clamp(2rem, 5vw, 6rem);
+}
+
+.stats-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.stat-item {
+  text-align: center;
+  position: relative;
+}
+
+.stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 10%;
+  height: 80%;
+  width: 1px;
+  background: var(--border);
+}
+
+.stat-number {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  color: var(--accent-bright);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+/* ─── SECTIONS COMMON ─── */
+section {
+  padding: clamp(4rem, 8vw, 8rem) clamp(2rem, 5vw, 6rem);
+}
+
+.section-header {
+  max-width: 700px;
+  margin-bottom: 4rem;
+}
+
+.section-header.centered {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.section-header h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
+}
+
+.section-header p {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ─── WHO WE ARE (Inspired by Rand's "Who is Rand" layout) ─── */
+.about-section {
+  background: var(--primary);
+}
+
+.about-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-visual {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: var(--surface);
+}
+
+.about-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-visual .overlay-badge {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  background: rgba(10,15,28,0.85);
+  backdrop-filter: blur(10px);
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.about-visual .overlay-badge .badge-number {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent-bright);
+}
+
+.about-visual .overlay-badge .badge-text {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Placeholder image styling */
+.img-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--surface) 0%, var(--primary-light) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.img-placeholder::before {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  animation: pulse-ring 4s ease infinite;
+}
+
+.img-placeholder::after {
+  content: '';
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border: 1px solid rgba(234,192,106,0.2);
+  border-radius: 50%;
+  animation: pulse-ring 4s ease 1s infinite;
+}
+
+.img-placeholder svg {
+  width: 60px;
+  height: 60px;
+  opacity: 0.3;
+}
+
+.about-text h2 {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.about-text p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+
+.about-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.value-chip {
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+
+/* ─── SOLUTIONS / SERVICES GRID (Inspired by Rand "What We Do") ─── */
+.solutions-section {
+  background: var(--primary-light);
+}
+
+.solutions-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.solution-card {
+  background: var(--primary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2.5rem 2rem;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.solution-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.solution-card:hover {
+  border-color: rgba(234, 192, 106, 0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.solution-card:hover::before {
+  transform: scaleX(1);
+}
+
+.solution-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  background: var(--accent-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.solution-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--accent-bright);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.solution-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.01em;
+}
+
+.solution-card p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.solution-card .card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-bright);
+  text-decoration: none;
+  transition: gap 0.3s;
+}
+
+.solution-card:hover .card-link { gap: 0.7rem; }
+
+/* ─── WHY CONCENTRIC (Inspired by Rand's "Why Rand?" section) ─── */
+.why-section {
+  background: var(--primary);
+}
+
+.why-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.why-item {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.why-item:hover {
+  background: rgba(30, 41, 59, 0.5);
+}
+
+.why-number {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--accent-glow);
+  color: var(--accent-bright);
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.why-item h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.why-item p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ─── STOCK / INVENTORY PAGE ─── */
+.stock-section {
+  background: var(--primary-light);
+}
+
+.stock-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stock-table-wrap {
+  background: var(--primary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.stock-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.stock-table thead {
+  background: var(--surface);
+}
+
+.stock-table th {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.stock-table td {
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.stock-table tbody tr {
+  transition: background 0.2s;
+}
+
+.stock-table tbody tr:hover {
+  background: rgba(234, 192, 106, 0.03);
+}
+
+.stock-table .part-mpn {
+  font-weight: 700;
+  color: var(--accent-bright);
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+}
+
+.stock-table .part-mfr {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.stock-detail-card {
+  background: var(--primary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2.5rem;
+  margin-top: 1.5rem;
+}
+
+.stock-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.stock-detail-header h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.stock-detail-header .mpn-display {
+  font-family: 'Courier New', monospace;
+  font-size: 1.1rem;
+  color: var(--accent-bright);
+  background: var(--accent-glow);
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  border: 1px solid rgba(234, 192, 106, 0.2);
+  margin-top: 0.5rem;
+  display: inline-block;
+}
+
+.stock-specs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.spec-item {
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 6px;
+}
+
+.spec-item .spec-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  font-family: var(--font-heading);
+  margin-bottom: 0.35rem;
+}
+
+.spec-item .spec-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.stock-cta-row {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.badge-instock {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.badge-instock::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: #10b981;
+  border-radius: 50%;
+}
+
+/* ─── MAP PIN COLORS (3 tiers) ─── */
+.map-pin.tier-open .pin-dot {
+  background: var(--pin-open);
+  border-color: var(--accent-bright);
+  box-shadow: 0 0 20px rgba(234, 192, 106, 0.4);
+}
+
+.map-pin.tier-soon .pin-dot {
+  background: var(--pin-soon);
+  border-color: #fbbf24;
+  box-shadow: 0 0 15px rgba(245,158,11,0.3);
+  opacity: 0.8;
+}
+
+.map-pin.tier-soon .pin-dot::after {
+  border-color: rgba(245,158,11,0.3);
+}
+
+.map-pin.tier-certified .pin-dot {
+  background: var(--pin-certified);
+  border-color: #34d399;
+  box-shadow: 0 0 15px rgba(16,185,129,0.3);
+  width: 10px;
+  height: 10px;
+}
+
+.map-pin.tier-certified .pin-dot::after {
+  border-color: rgba(16,185,129,0.2);
+}
+
+.map-pin.tier-certified .pin-label {
+  font-size: 0.6rem;
+}
+
+.map-legend {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.legend-dot.open { background: var(--pin-open); }
+.legend-dot.soon { background: var(--pin-soon); }
+.legend-dot.certified { background: var(--pin-certified); }
+
+/* ─── GLOBAL MAP SECTION (Inspired by Gunvor's global presence) ─── */
+.map-section {
+  background: var(--primary-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.map-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.world-map-wrap {
+  width: 100%;
+  aspect-ratio: 2/1;
+  position: relative;
+  background: var(--primary);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.world-map-wrap svg {
+  width: 100%;
+  height: 100%;
+  opacity: 0.25;
+}
+
+.map-pin {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.map-pin .pin-dot {
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  border-radius: 50%;
+  border: 2px solid var(--accent-bright);
+  box-shadow: 0 0 20px rgba(234,192,106,0.4);
+  position: relative;
+}
+
+.map-pin .pin-dot::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border: 1px solid rgba(234,192,106,0.3);
+  border-radius: 50%;
+  animation: ping 2s ease infinite;
+}
+
+.map-pin .pin-label {
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text);
+  background: rgba(10,15,28,0.8);
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+/* Flight path lines */
+.flight-path {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.flight-path svg {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+
+/* Plane animation */
+.plane-icon {
+  animation: fly-along 6s linear infinite;
+}
+
+/* ─── INDUSTRIES SECTION ─── */
+.industries-section {
+  background: var(--primary);
+}
+
+.industries-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.industries-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.industry-card {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+
+.industry-card .card-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--surface) 0%, var(--primary) 100%);
+  transition: transform 0.5s ease;
+}
+
+.industry-card:hover .card-bg {
+  transform: scale(1.05);
+}
+
+.industry-card .card-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(10,15,28,0.9) 0%, transparent 60%);
+}
+
+.industry-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.industry-card p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ─── TEAM SECTION ─── */
+.team-section {
+  background: var(--primary-light);
+}
+
+.team-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.team-card {
+  text-align: center;
+}
+
+.team-avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: var(--surface);
+  margin: 0 auto 1.25rem;
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+.team-card:hover .team-avatar {
+  border-color: var(--accent);
+}
+
+.team-avatar svg {
+  width: 48px;
+  height: 48px;
+  opacity: 0.25;
+}
+
+.team-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.team-card .role {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.team-card .linkedin-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--accent-bright);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.team-card .linkedin-link:hover { text-decoration: underline; }
+
+/* ─── CTA SECTION ─── */
+.cta-section {
+  background: var(--primary);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.cta-container {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-container h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.cta-container p {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--primary-light);
+  border-top: 1px solid var(--border);
+  padding: 4rem clamp(2rem, 5vw, 6rem) 2rem;
+}
+
+.footer-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.footer-brand p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-top: 1rem;
+  max-width: 320px;
+}
+
+.footer-col h4 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  color: var(--text);
+}
+
+.footer-col a {
+  display: block;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 0.6rem;
+  transition: color 0.3s;
+}
+
+.footer-col a:hover { color: var(--accent-bright); }
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-bottom span {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrollDown {
+  0% { top: -50%; }
+  100% { top: 150%; }
+}
+
+@keyframes ping {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 0.3; }
+  50% { transform: scale(1.1); opacity: 0.1; }
+  100% { transform: scale(0.8); opacity: 0.3; }
+}
+
+@keyframes float-dot {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .solutions-grid { grid-template-columns: repeat(2, 1fr); }
+  .industries-grid { grid-template-columns: repeat(2, 1fr); }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .about-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-item:not(:last-child)::after { display: none; }
+  .solutions-grid { grid-template-columns: 1fr !important; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+  .stock-table-wrap { overflow-x: auto; }
+  .stock-specs { grid-template-columns: 1fr 1fr; }
+  .stock-detail-header { flex-direction: column; }
+  .stock-cta-row { flex-direction: column; align-items: flex-start; }
+  .stock-cta-row span { margin-left: 0 !important; margin-top: 0.5rem; }
+  .map-legend { flex-direction: column; align-items: center; }
+}
+
+/* ─── PARTICLE DOTS BACKGROUND ─── */
+.particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 50%;
+  opacity: 0;
+  animation: float-particle linear infinite;
+}
+
+@keyframes float-particle {
+  0% { opacity: 0; transform: translateY(0) scale(0); }
+  10% { opacity: 0.6; transform: scale(1); }
+  90% { opacity: 0.2; }
+  100% { opacity: 0; transform: translateY(-100vh) scale(0.5); }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAVIGATION ─── -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <svg class="nav-logo-svg" viewBox="250 825 1500 380" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-label="Concentric Silicon">
+<path d="M284.5,918.05c0-9.69,1.71-19.27,5.14-28.73c3.43-9.46,8.39-17.92,14.87-25.38 c6.48-7.45,14.42-13.49,23.81-18.11c9.39-4.62,20.12-6.93,32.2-6.93c14.16,0,26.42,3.21,36.78,9.61 c10.36,6.41,18,14.76,22.92,25.04l-23.7,16.32c-1.79-4.47-4.1-8.23-6.93-11.29c-2.83-3.05-5.93-5.48-9.28-7.27 c-3.35-1.79-6.82-3.09-10.4-3.91c-3.58-0.82-7.01-1.23-10.29-1.23c-7.31,0-13.72,1.56-19.23,4.7c-5.52,3.13-10.1,7.19-13.75,12.19 c-3.66,5-6.41,10.66-8.27,16.99c-1.86,6.34-2.79,12.63-2.79,18.89c0,7.01,1.08,13.75,3.24,20.24c2.16,6.48,5.22,12.19,9.17,17.1 c3.95,4.92,8.68,8.87,14.2,11.85c5.51,2.98,11.55,4.47,18.11,4.47c3.43,0,6.93-0.45,10.51-1.34c3.58-0.9,7.04-2.31,10.4-4.25 c3.35-1.94,6.45-4.43,9.28-7.49c2.83-3.05,5.14-6.74,6.93-11.07L422.68,963c-2.38,5.97-5.85,11.22-10.4,15.76 c-4.55,4.55-9.73,8.39-15.54,11.51c-5.81,3.13-11.93,5.52-18.34,7.15c-6.41,1.64-12.75,2.46-19,2.46c-11.03,0-21.13-2.38-30.3-7.15 c-9.17-4.77-17.07-10.99-23.7-18.67c-6.63-7.67-11.78-16.4-15.43-26.16C286.32,938.14,284.5,928.19,284.5,918.05z"/>
+<path d="M638.22,896.81v101.74h-30.86V839.8h23.93l82.73,104.2V840.02h30.86v158.53h-25.04L638.22,896.81z"/>
+<path d="M768.58,918.05c0-9.69,1.71-19.27,5.14-28.73c3.43-9.46,8.39-17.92,14.87-25.38 c6.48-7.45,14.42-13.49,23.81-18.11c9.39-4.62,20.12-6.93,32.2-6.93c14.16,0,26.42,3.21,36.78,9.61 c10.36,6.41,18,14.76,22.92,25.04l-23.7,16.32c-1.79-4.47-4.1-8.23-6.93-11.29c-2.83-3.05-5.93-5.48-9.28-7.27 c-3.35-1.79-6.82-3.09-10.4-3.91c-3.58-0.82-7.01-1.23-10.29-1.23c-7.31,0-13.72,1.56-19.23,4.7c-5.52,3.13-10.1,7.19-13.75,12.19 c-3.66,5-6.41,10.66-8.27,16.99c-1.86,6.34-2.79,12.63-2.79,18.89c0,7.01,1.08,13.75,3.24,20.24c2.16,6.48,5.22,12.19,9.17,17.1 c3.95,4.92,8.68,8.87,14.2,11.85c5.51,2.98,11.55,4.47,18.11,4.47c3.43,0,6.93-0.45,10.51-1.34c3.58-0.9,7.04-2.31,10.4-4.25 c3.35-1.94,6.45-4.43,9.28-7.49c2.83-3.05,5.14-6.74,6.93-11.07L906.76,963c-2.38,5.97-5.85,11.22-10.4,15.76 c-4.55,4.55-9.73,8.39-15.54,11.51c-5.81,3.13-11.93,5.52-18.34,7.15c-6.41,1.64-12.75,2.46-19,2.46c-11.03,0-21.13-2.38-30.3-7.15 c-9.17-4.77-17.07-10.99-23.7-18.67c-6.63-7.67-11.78-16.4-15.43-26.16C770.4,938.14,768.58,928.19,768.58,918.05z"/>
+<path d="M1038.01,971.49v27.05H927.78V839.8H1036v27.05h-77.36v38.24h66.85v25.04h-66.85v41.36H1038.01z"/>
+<path d="M1093.69,896.81v101.74h-30.86V839.8h23.93l82.73,104.2V840.02h30.86v158.53h-25.04L1093.69,896.81z"/>
+<path d="M1352.16,866.85h-50.53v131.7h-30.86v-131.7h-50.76V839.8h132.14V866.85z"/>
+<path d="M1372.06,998.55V839.8h70.21c7.3,0,14.05,1.53,20.24,4.58c6.18,3.06,11.51,7.08,15.99,12.07 c4.47,5,7.97,10.66,10.51,16.99c2.53,6.34,3.8,12.71,3.8,19.12c0,10.29-2.57,19.64-7.71,28.06c-5.14,8.42-12.11,14.5-20.91,18.22 l37.34,59.7h-34.88l-33.31-53.21h-30.41v53.21H1372.06z M1402.92,918.28h38.68c2.83,0,5.48-0.67,7.94-2.01 c2.46-1.34,4.58-3.16,6.37-5.48c1.79-2.31,3.21-5.03,4.25-8.16c1.04-3.13,1.56-6.49,1.56-10.06c0-3.73-0.6-7.15-1.79-10.29 c-1.2-3.13-2.8-5.85-4.81-8.16c-2.01-2.31-4.33-4.1-6.93-5.37c-2.61-1.26-5.25-1.9-7.94-1.9h-37.34V918.28z"/>
+<path d="M1522.76,998.55V840.02h30.86v158.53H1522.76z"/>
+<path d="M1577.32,918.05c0-9.69,1.71-19.27,5.14-28.73c3.43-9.46,8.39-17.92,14.87-25.38 c6.48-7.45,14.42-13.49,23.81-18.11c9.39-4.62,20.12-6.93,32.2-6.93c14.16,0,26.42,3.21,36.78,9.61 c10.36,6.41,18,14.76,22.92,25.04l-23.7,16.32c-1.79-4.47-4.1-8.23-6.93-11.29c-2.83-3.05-5.93-5.48-9.28-7.27 c-3.35-1.79-6.82-3.09-10.4-3.91c-3.58-0.82-7.01-1.23-10.29-1.23c-7.31,0-13.72,1.56-19.23,4.7c-5.52,3.13-10.1,7.19-13.75,12.19 c-3.66,5-6.41,10.66-8.27,16.99c-1.86,6.34-2.79,12.63-2.79,18.89c0,7.01,1.08,13.75,3.24,20.24c2.16,6.48,5.22,12.19,9.17,17.1 c3.95,4.92,8.68,8.87,14.2,11.85c5.51,2.98,11.55,4.47,18.11,4.47c3.43,0,6.93-0.45,10.51-1.34c3.58-0.9,7.04-2.31,10.4-4.25 c3.35-1.94,6.45-4.43,9.28-7.49c2.83-3.05,5.14-6.74,6.93-11.07L1715.5,963c-2.39,5.97-5.85,11.22-10.4,15.76 c-4.55,4.55-9.73,8.39-15.54,11.51c-5.81,3.13-11.93,5.52-18.34,7.15c-6.41,1.64-12.75,2.46-19,2.46c-11.03,0-21.13-2.38-30.3-7.15 c-9.17-4.77-17.07-10.99-23.7-18.67c-6.63-7.67-11.78-16.4-15.43-26.16C1579.15,938.14,1577.32,928.19,1577.32,918.05z"/>
+<path d="M651.11,1082.02c-0.69-0.69-1.96-1.64-3.79-2.83c-1.83-1.19-4.07-2.35-6.69-3.49 c-2.63-1.14-5.48-2.1-8.55-2.9c-3.07-0.79-6.19-1.19-9.37-1.19c-5.65,0-9.86,1.04-12.63,3.12c-2.78,2.08-4.16,5.01-4.16,8.77 c0,2.18,0.52,3.99,1.56,5.42c1.04,1.44,2.55,2.7,4.53,3.79c1.98,1.09,4.48,2.08,7.51,2.97c3.02,0.89,6.52,1.83,10.48,2.82 c5.15,1.39,9.83,2.88,14.05,4.46c4.21,1.59,7.78,3.57,10.7,5.95c2.92,2.38,5.18,5.23,6.76,8.55c1.58,3.32,2.38,7.41,2.38,12.26 c0,5.65-1.07,10.48-3.2,14.49c-2.13,4.01-4.98,7.26-8.55,9.74c-3.57,2.48-7.73,4.29-12.49,5.42c-4.76,1.14-9.71,1.71-14.86,1.71 c-7.93,0-15.76-1.19-23.49-3.57c-7.73-2.38-14.67-5.75-20.81-10.11l9.07-17.69c0.89,0.89,2.5,2.06,4.83,3.49 c2.33,1.44,5.08,2.88,8.25,4.31c3.17,1.44,6.69,2.65,10.55,3.64c3.87,0.99,7.83,1.49,11.89,1.49c11.3,0,16.95-3.61,16.95-10.85 c0-2.38-0.65-4.36-1.93-5.95c-1.29-1.58-3.12-2.97-5.5-4.16c-2.38-1.19-5.25-2.28-8.62-3.27c-3.37-0.99-7.13-2.03-11.3-3.12 c-5.05-1.39-9.44-2.9-13.15-4.53c-3.72-1.64-6.82-3.54-9.29-5.72c-2.48-2.18-4.34-4.76-5.57-7.73c-1.24-2.97-1.86-6.49-1.86-10.56 c0-5.35,0.99-10.11,2.97-14.27c1.98-4.16,4.73-7.63,8.25-10.4c3.52-2.77,7.6-4.88,12.26-6.32c4.66-1.43,9.66-2.15,15.02-2.15 c7.43,0,14.27,1.16,20.51,3.49c6.24,2.33,11.69,5.08,16.35,8.25L651.11,1082.02z"/>
+<path d="M724.1,1159.91v-105.39h20.51v105.39H724.1z"/>
+<path d="M811.21,1159.91v-105.54h20.51v87.55h53.81v17.99H811.21z"/>
+<path d="M943.37,1159.91v-105.39h20.51v105.39H943.37z"/>
+<path d="M1024.23,1106.4c0-6.44,1.14-12.81,3.42-19.1c2.28-6.29,5.58-11.91,9.89-16.87 c4.31-4.95,9.59-8.97,15.83-12.04c6.24-3.07,13.38-4.61,21.41-4.61c9.41,0,17.56,2.13,24.45,6.39 c6.89,4.26,11.97,9.81,15.24,16.65l-15.76,10.85c-1.19-2.97-2.73-5.47-4.61-7.51c-1.88-2.03-3.94-3.64-6.17-4.83 c-2.23-1.19-4.53-2.05-6.91-2.6c-2.38-0.54-4.66-0.82-6.84-0.82c-4.86,0-9.12,1.04-12.79,3.12c-3.67,2.08-6.71,4.78-9.14,8.1 c-2.43,3.32-4.26,7.09-5.5,11.3c-1.24,4.21-1.86,8.4-1.86,12.56c0,4.66,0.72,9.14,2.16,13.45c1.43,4.31,3.47,8.1,6.09,11.37 c2.62,3.27,5.77,5.9,9.44,7.88c3.66,1.99,7.68,2.97,12.04,2.97c2.28,0,4.61-0.3,6.99-0.89c2.38-0.6,4.68-1.54,6.91-2.83 c2.23-1.29,4.29-2.95,6.17-4.98c1.88-2.03,3.42-4.48,4.61-7.36l16.8,9.66c-1.59,3.96-3.89,7.46-6.91,10.48s-6.47,5.57-10.33,7.65 c-3.86,2.08-7.93,3.67-12.19,4.76s-8.47,1.64-12.63,1.64c-7.33,0-14.05-1.58-20.14-4.76c-6.09-3.17-11.35-7.31-15.76-12.41 c-4.41-5.1-7.83-10.9-10.26-17.39C1025.44,1119.75,1024.23,1113.14,1024.23,1106.4z"/>
+<path d="M1217.33,1160.65c-7.43,0-14.22-1.51-20.36-4.53c-6.15-3.02-11.42-7.03-15.83-12.04 c-4.41-5-7.8-10.73-10.18-17.17c-2.38-6.44-3.57-13.03-3.57-19.77c0-7.04,1.26-13.77,3.79-20.22c2.53-6.44,6.04-12.14,10.55-17.09 c4.51-4.96,9.83-8.89,15.98-11.82c6.14-2.92,12.83-4.38,20.07-4.38c7.43,0,14.22,1.56,20.36,4.68s11.4,7.21,15.76,12.26 c4.36,5.05,7.73,10.8,10.11,17.24c2.38,6.44,3.57,12.98,3.57,19.62c0,7.04-1.26,13.75-3.79,20.14 c-2.53,6.39-6.02,12.04-10.48,16.95c-4.46,4.9-9.76,8.82-15.91,11.74C1231.25,1159.19,1224.56,1160.65,1217.33,1160.65z M1188.04,1107.14c0,4.56,0.67,8.97,2.01,13.23c1.34,4.26,3.27,8.03,5.8,11.3c2.53,3.27,5.62,5.9,9.29,7.88 c3.67,1.98,7.83,2.97,12.49,2.97c4.76,0,8.94-1.02,12.56-3.05c3.62-2.03,6.67-4.73,9.14-8.1c2.48-3.37,4.36-7.16,5.65-11.37 s1.93-8.5,1.93-12.86c0-4.56-0.7-8.97-2.08-13.23c-1.39-4.26-3.35-8.03-5.87-11.3c-2.53-3.27-5.6-5.87-9.22-7.8 c-3.62-1.93-7.71-2.9-12.26-2.9c-4.76,0-8.94,1.02-12.56,3.05c-3.62,2.03-6.69,4.71-9.22,8.03c-2.53,3.32-4.44,7.09-5.72,11.3 C1188.69,1098.49,1188.04,1102.78,1188.04,1107.14z"/>
+<path d="M1348.59,1092.27v67.64h-20.51v-105.54h15.91l55,69.27v-69.12h20.51v105.39h-16.65L1348.59,1092.27z"/>
+<path d="M508.09,1001.6c-44.76,0-81.18-36.49-81.18-81.35c0-44.86,36.42-81.35,81.18-81.35 c44.76,0,81.18,36.49,81.18,81.35C589.27,965.1,552.85,1001.6,508.09,1001.6z M508.09,845.25c-41.26,0-74.83,33.64-74.83,75 s33.57,75,74.83,75c41.26,0,74.83-33.64,74.83-75S549.35,845.25,508.09,845.25z"/>
+<path d="M508.09,986.66c-36.54,0-66.27-29.79-66.27-66.41c0-36.62,29.73-66.41,66.27-66.41 c36.54,0,66.27,29.79,66.27,66.41C574.36,956.87,544.63,986.66,508.09,986.66z M508.09,860.19c-33.04,0-59.92,26.94-59.92,60.06 c0,33.12,26.88,60.06,59.92,60.06s59.92-26.94,59.92-60.06C568.01,887.13,541.13,860.19,508.09,860.19z"/>
+<path d="M508.09,971.72c-28.32,0-51.36-23.09-51.36-51.47c0-28.38,23.04-51.47,51.36-51.47s51.36,23.09,51.36,51.47 C559.45,948.63,536.41,971.72,508.09,971.72z M508.09,875.13c-24.82,0-45.01,20.24-45.01,45.12s20.19,45.12,45.01,45.12 c24.82,0,45.01-20.24,45.01-45.12S532.91,875.13,508.09,875.13z"/>
+<path d="M508.09,956.78c-20.1,0-36.46-16.39-36.46-36.53c0-20.14,16.35-36.53,36.46-36.53 c20.1,0,36.46,16.39,36.46,36.53C544.55,940.39,528.19,956.78,508.09,956.78z M508.09,890.07c-16.6,0-30.11,13.54-30.11,30.18 c0,16.64,13.51,30.18,30.11,30.18c16.6,0,30.11-13.54,30.11-30.18C538.2,903.61,524.69,890.07,508.09,890.07z"/>
+</svg>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#solutions">Solutions</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#stock">Stock</a></li>
+    <li><a href="#global">Global</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  
+  <!-- Animated particle background -->
+  <div class="particles" id="particles"></div>
+  
+  <!-- Globe visualization -->
+  <div class="globe-canvas" id="globeCanvas"></div>
+  
+  <div class="hero-overlay"></div>
+  
+  <div class="hero-content">
+    <div class="hero-badge">Global Chip Distribution</div>
+    <h1><span>Concentric Silicon</span></h1>
+    <p class="hero-tagline">Positioning critical components where they are needed most.</p>
+    <p>A global distributor and trading company for electronic components and semiconductors—connecting manufacturers with the chips they need, reliably and worldwide.</p>
+    <div class="hero-btns">
+      <a href="#solutions" class="btn btn-primary">
+        Our Solutions
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#about" class="btn btn-outline">Learn More</a>
+    </div>
+  </div>
+  
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ─── VALUE PROPS BAR ─── -->
+<div class="stats-bar">
+  <div class="stats-grid">
+    <div class="stat-item reveal">
+      <div class="stat-number">4</div>
+      <div class="stat-label">Offices Worldwide</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-number">Global</div>
+      <div class="stat-label">Supplier Network</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-number">Fast</div>
+      <div class="stat-label">Speed to Delivery</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-number">24/7</div>
+      <div class="stat-label">Sourcing Support</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── ABOUT SECTION ─── -->
+<section class="about-section" id="about">
+  <div class="about-grid">
+    <div class="about-visual reveal">
+      <div class="img-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <div class="overlay-badge">
+        <div class="badge-number">Est. 2024</div>
+        <div class="badge-text">Los Angeles, CA</div>
+      </div>
+    </div>
+    <div class="about-text reveal">
+      <div class="section-tag">Who We Are</div>
+      <h2>A New Kind of Chip Distributor</h2>
+      <p>Concentric Silicon is a modern chip distribution and trading company built for the realities of today's semiconductor landscape. Founded by experienced commodity traders, we bring the speed, market intelligence, and global sourcing networks that legacy distributors lack.</p>
+      <p>Headquartered in Los Angeles with offices opening across North America and Asia, we connect manufacturers and buyers with the electronic components they need—whether filling critical shortages or managing excess inventory.</p>
+      <div class="about-values">
+        <span class="value-chip">Integrity</span>
+        <span class="value-chip">Speed</span>
+        <span class="value-chip">Global Reach</span>
+        <span class="value-chip">Quality</span>
+        <span class="value-chip">Transparency</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SOLUTIONS ─── -->
+<section class="solutions-section" id="solutions">
+  <div class="solutions-container">
+    <div class="section-header centered reveal">
+      <div class="section-tag">What We Do</div>
+      <h2>Chip Distribution & Trading Solutions</h2>
+      <p>From sourcing hard-to-find semiconductors to managing excess inventory, Concentric Silicon provides the expertise and global network to keep your supply chain moving.</p>
+    </div>
+    
+    <div class="solutions-grid" style="grid-template-columns: repeat(2, 1fr);">
+      <div class="solution-card reveal">
+        <div class="solution-icon">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </div>
+        <h3>Component Sourcing</h3>
+        <p>Global sourcing network spanning Asia, North America, and beyond. We locate hard-to-find electronic components and semiconductors, filling shortage orders through verified suppliers worldwide.</p>
+        <a href="#" class="card-link">Learn More <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      
+      <div class="solution-card reveal">
+        <div class="solution-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Chip Trading</h3>
+        <p>Leveraging deep commodity trading expertise, we buy and sell electronic components at competitive prices. Real-time market intelligence drives every transaction we execute.</p>
+        <a href="#" class="card-link">Learn More <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      
+      <div class="solution-card reveal">
+        <div class="solution-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3>Quality Assurance</h3>
+        <p>Every component passes through inspection and testing protocols. Counterfeit detection, electrical testing, and full traceability on every order to ensure you receive genuine parts.</p>
+        <a href="#" class="card-link">Learn More <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      
+      <div class="solution-card reveal">
+        <div class="solution-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+        </div>
+        <h3>Excess Inventory</h3>
+        <p>Turn surplus inventory into revenue. Our excess management capabilities help you sell obsolete or overstocked components to verified global buyers at the best available price.</p>
+        <a href="#" class="card-link">Learn More <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHY CONCENTRIC ─── -->
+<section class="why-section">
+  <div class="why-container">
+    <div class="section-header centered reveal">
+      <div class="section-tag">Why Concentric</div>
+      <h2>What Sets Us Apart</h2>
+      <p>In a crowded distribution landscape, Concentric Silicon delivers the speed, reliability, and market intelligence that keeps your supply chain ahead.</p>
+    </div>
+    
+    <div class="why-grid">
+      <div class="why-item reveal">
+        <div class="why-number">01</div>
+        <div>
+          <h3>Verified Global Suppliers</h3>
+          <p>Every supplier in our network is vetted and continuously monitored. We maintain relationships across every level of the semiconductor supply chain worldwide.</p>
+        </div>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-number">02</div>
+        <div>
+          <h3>Speed to Delivery</h3>
+          <p>Built for urgency. Our sourcing team and logistics network are structured to locate and deliver components faster than traditional distributors.</p>
+        </div>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-number">03</div>
+        <div>
+          <h3>Trader Mentality</h3>
+          <p>Founded by commodity traders, we bring real-time market intelligence, pricing transparency, and the negotiation expertise to secure the best deals for our clients.</p>
+        </div>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-number">04</div>
+        <div>
+          <h3>Quality You Can Trust</h3>
+          <p>Rigorous inspection protocols and counterfeit prevention measures on every order. We're committed to earning industry certifications as we grow.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── STOCK / INVENTORY ─── -->
+<section class="stock-section" id="stock">
+  <div class="stock-container">
+    <div class="section-header centered reveal">
+      <div class="section-tag">Stock</div>
+      <h2>Available Inventory</h2>
+      <p>Electronic components in stock and ready to ship. Contact us for pricing and availability.</p>
+    </div>
+
+    <!-- Product Detail Card (modeled after Avnet layout) -->
+    <div class="stock-detail-card reveal">
+      <div class="stock-detail-header">
+        <div>
+          <h3>Micron DRAM — LPDDR4X</h3>
+          <div class="mpn-display">MT53E1G16D1ZW-046 AAT:C</div>
+        </div>
+        <div style="text-align: right;">
+          <span class="badge-instock">In Stock</span>
+        </div>
+      </div>
+
+      <div class="stock-specs">
+        <div class="spec-item">
+          <div class="spec-label">Manufacturer</div>
+          <div class="spec-value">Micron Technology</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Part Number (MPN)</div>
+          <div class="spec-value" style="font-family: 'Courier New', monospace; font-size: 0.9rem;">MT53E1G16D1ZW-046 AAT:C</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Category</div>
+          <div class="spec-value">Memory — DRAM</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Sub-Category</div>
+          <div class="spec-value">LPDDR4X SDRAM</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Density</div>
+          <div class="spec-value">16Gb</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Configuration</div>
+          <div class="spec-value">1G x 16</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Speed</div>
+          <div class="spec-value">4266 MT/s</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Package</div>
+          <div class="spec-value">200-Ball FBGA</div>
+        </div>
+      </div>
+
+      <div class="stock-cta-row">
+        <a href="mailto:sales@concentricsilicon.com?subject=RFQ: MT53E1G16D1ZW-046 AAT:C" class="btn btn-primary">
+          Request Quote
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="mailto:sales@concentricsilicon.com" class="btn btn-outline">Contact Sales</a>
+        <span style="font-size: 0.85rem; color: var(--text-dim); margin-left: auto;">Pricing available on request</span>
+      </div>
+    </div>
+
+    <!-- Stock Table (for future inventory expansion) -->
+    <div class="stock-table-wrap reveal" style="margin-top: 2rem;">
+      <table class="stock-table">
+        <thead>
+          <tr>
+            <th>Manufacturer</th>
+            <th>Part Number (MPN)</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="part-mfr">Micron</td>
+            <td class="part-mpn">MT53E1G16D1ZW-046 AAT:C</td>
+            <td>Memory — LPDDR4X DRAM</td>
+            <td><span class="badge-instock">In Stock</span></td>
+            <td><a href="mailto:sales@concentricsilicon.com?subject=RFQ: MT53E1G16D1ZW-046 AAT:C" style="color: var(--accent-bright); text-decoration: none; font-weight: 600; font-size: 0.85rem;">Get Quote →</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="text-align: center; color: var(--text-dim); font-size: 0.85rem; margin-top: 1.5rem;">
+      Inventory updated regularly. Don't see what you need? <a href="mailto:sales@concentricsilicon.com" style="color: var(--accent-bright);">Contact us</a> — we source globally.
+    </p>
+  </div>
+</section>
+
+<!-- ─── GLOBAL MAP ─── -->
+<section class="map-section" id="global">
+  <div class="map-container">
+    <div class="section-header centered reveal">
+      <div class="section-tag">Global Presence</div>
+      <h2>Strategically Positioned Worldwide</h2>
+      <p>Headquartered in Los Angeles with offices opening across North America and Asia. Our network of ISO 9001:2015 / AS6081 certified logistics and inspection centers ensures quality and compliance at every stage of the supply chain.</p>
+    </div>
+    
+    <div class="world-map-wrap reveal">
+      <!-- Simplified world map SVG -->
+      <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
+        <!-- Dot grid pattern for world map effect -->
+        <defs>
+          <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+            <circle cx="10" cy="10" r="1" fill="#334155"/>
+          </pattern>
+        </defs>
+        <rect width="1000" height="500" fill="url(#dots)"/>
+        
+        <!-- Simplified continent outlines as dot clusters -->
+        <!-- North America -->
+        <g opacity="0.6">
+          <ellipse cx="220" cy="180" rx="120" ry="90" fill="none" stroke="#1e293b" stroke-width="1"/>
+          <!-- USA shape approximation -->
+          <path d="M130 150 Q180 130 270 140 Q310 150 320 180 Q310 220 280 240 Q240 260 190 250 Q140 240 130 200 Z" fill="#1e293b" opacity="0.5"/>
+          <!-- Mexico -->
+          <path d="M170 250 Q200 240 230 250 Q240 280 220 300 Q190 310 175 290 Z" fill="#1e293b" opacity="0.4"/>
+        </g>
+        
+        <!-- South America -->
+        <g opacity="0.5">
+          <path d="M260 320 Q290 300 310 330 Q320 380 300 430 Q280 460 260 440 Q240 400 250 360 Z" fill="#1e293b" opacity="0.4"/>
+        </g>
+        
+        <!-- Europe -->
+        <g opacity="0.5">
+          <path d="M440 120 Q480 100 520 120 Q540 150 520 170 Q490 180 460 170 Q440 150 440 120Z" fill="#1e293b" opacity="0.4"/>
+        </g>
+        
+        <!-- Africa -->
+        <g opacity="0.5">
+          <path d="M460 220 Q500 200 530 230 Q540 300 520 360 Q490 390 470 370 Q450 320 450 270 Z" fill="#1e293b" opacity="0.4"/>
+        </g>
+        
+        <!-- Asia -->
+        <g opacity="0.6">
+          <path d="M560 100 Q650 80 750 110 Q800 140 780 190 Q750 220 700 230 Q650 220 600 200 Q560 170 560 140 Z" fill="#1e293b" opacity="0.5"/>
+          <!-- Southeast Asia -->
+          <path d="M720 230 Q760 220 780 250 Q770 290 740 300 Q710 290 720 260 Z" fill="#1e293b" opacity="0.4"/>
+        </g>
+        
+        <!-- Australia -->
+        <g opacity="0.4">
+          <ellipse cx="790" cy="380" rx="60" ry="40" fill="#1e293b" opacity="0.4"/>
+        </g>
+        
+        <!-- Flight paths (curved) -->
+        <g fill="none" stroke="#EAC06A" stroke-width="1" opacity="0.3">
+          <!-- LA to Austin -->
+          <path d="M190 195 Q220 175 250 195" stroke-dasharray="4 4"/>
+          <!-- LA to Guadalajara -->
+          <path d="M190 200 Q200 260 210 280" stroke-dasharray="4 4"/>
+          <!-- LA to Vietnam -->
+          <path d="M195 195 Q450 100 740 270" stroke-dasharray="4 4"/>
+          <!-- Austin to Vietnam -->
+          <path d="M255 195 Q500 80 740 270" stroke-dasharray="4 4"/>
+        </g>
+        
+        <!-- Animated planes -->
+        <g fill="#f0d080" opacity="0.8">
+          <polygon points="0,-4 8,0 0,4 2,0" transform="translate(400, 120) rotate(15)">
+            <animateMotion dur="8s" repeatCount="indefinite" path="M-200,80 Q250,-20 540,150" rotate="auto"/>
+          </polygon>
+          <polygon points="0,-3 6,0 0,3 1.5,0" transform="translate(300, 180) rotate(-10)">
+            <animateMotion dur="12s" repeatCount="indefinite" path="M-5,5 Q30,-80 60,-5" rotate="auto"/>
+          </polygon>
+        </g>
+      </svg>
+      
+      <!-- Tier 1: Open Office -->
+      <div class="map-pin tier-open" style="left: 17%; top: 37%;">
+        <div class="pin-dot"></div>
+        <span class="pin-label">Los Angeles — HQ</span>
+      </div>
+
+      <!-- Tier 2: Coming Soon -->
+      <div class="map-pin tier-soon" style="left: 24%; top: 38%;">
+        <div class="pin-dot"></div>
+        <span class="pin-label">Austin</span>
+      </div>
+      <div class="map-pin tier-soon" style="left: 22%; top: 34%;">
+        <div class="pin-dot"></div>
+        <span class="pin-label">Denver</span>
+      </div>
+      <div class="map-pin tier-soon" style="left: 20%; top: 53%;">
+        <div class="pin-dot"></div>
+        <span class="pin-label">Guadalajara</span>
+      </div>
+      <div class="map-pin tier-soon" style="left: 72%; top: 55%;">
+        <div class="pin-dot"></div>
+        <span class="pin-label">Ho Chi Minh City</span>
+      </div>
+
+      <!-- Tier 3: ISO Certified Logistics & Inspection Centers -->
+      <div class="map-pin tier-certified" style="left: 25%; top: 33%;">
+        <div class="pin-dot"></div>
+        <span class="pin-label">Westlake, OH</span>
+      </div>
+      <div class="map-pin tier-certified" style="left: 75%; top: 42%;">
+        <div class="pin-dot"></div>
+        <span class="pin-label">Hong Kong</span>
+      </div>
+      <div class="map-pin tier-certified" style="left: 48%; top: 27%;">
+        <div class="pin-dot"></div>
+        <span class="pin-label">Puchheim, DE</span>
+      </div>
+      <div class="map-pin tier-certified" style="left: 74%; top: 46%;">
+        <div class="pin-dot"></div>
+        <span class="pin-label">Shenzhen</span>
+      </div>
+      <div class="map-pin tier-certified" style="left: 70%; top: 52%;">
+        <div class="pin-dot"></div>
+        <span class="pin-label">Singapore</span>
+      </div>
+      <div class="map-pin tier-certified" style="left: 66%; top: 50%;">
+        <div class="pin-dot"></div>
+        <span class="pin-label">Bengaluru</span>
+      </div>
+    </div>
+
+    <!-- Map Legend -->
+    <div class="map-legend reveal">
+      <div class="legend-item"><div class="legend-dot open"></div> Active Office</div>
+      <div class="legend-item"><div class="legend-dot soon"></div> Opening Soon</div>
+      <div class="legend-item"><div class="legend-dot certified"></div> ISO 9001:2015 / AS6081 Certified Logistics & Inspection Center</div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- Industries section removed — can be added later as business grows -->
+
+<!-- ─── TEAM ─── -->
+<section class="team-section" id="team">
+  <div class="team-container">
+    <div class="section-header centered reveal">
+      <div class="section-tag">About Us</div>
+      <h2>Meet the Team</h2>
+      <p>Experienced traders and operators building the next generation of chip distribution.</p>
+    </div>
+    
+    <div class="team-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 600px; margin: 0 auto;">
+      <div class="team-card reveal">
+        <div class="team-avatar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3>Jonah Van Bourg</h3>
+        <p class="role">Founder & CEO</p>
+        <a href="#" class="linkedin-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3>[President Name]</h3>
+        <p class="role">President</p>
+        <a href="#" class="linkedin-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="cta-section" id="contact">
+  <div class="cta-container reveal">
+    <div class="section-tag">Get Started</div>
+    <h2>Ready to Optimize Your Supply Chain?</h2>
+    <p>Whether you need to source hard-to-find components, reduce costs, or build a resilient supply chain strategy, our team is ready to help.</p>
+    <div class="hero-btns">
+      <a href="mailto:info@concentricsilicon.com" class="btn btn-primary">
+        Contact Us
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#" class="btn btn-outline">Request a Quote</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo" style="margin-bottom: 0.5rem;">
+        <svg class="nav-logo-svg" viewBox="250 825 1500 380" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-label="Concentric Silicon">
+<path d="M284.5,918.05c0-9.69,1.71-19.27,5.14-28.73c3.43-9.46,8.39-17.92,14.87-25.38 c6.48-7.45,14.42-13.49,23.81-18.11c9.39-4.62,20.12-6.93,32.2-6.93c14.16,0,26.42,3.21,36.78,9.61 c10.36,6.41,18,14.76,22.92,25.04l-23.7,16.32c-1.79-4.47-4.1-8.23-6.93-11.29c-2.83-3.05-5.93-5.48-9.28-7.27 c-3.35-1.79-6.82-3.09-10.4-3.91c-3.58-0.82-7.01-1.23-10.29-1.23c-7.31,0-13.72,1.56-19.23,4.7c-5.52,3.13-10.1,7.19-13.75,12.19 c-3.66,5-6.41,10.66-8.27,16.99c-1.86,6.34-2.79,12.63-2.79,18.89c0,7.01,1.08,13.75,3.24,20.24c2.16,6.48,5.22,12.19,9.17,17.1 c3.95,4.92,8.68,8.87,14.2,11.85c5.51,2.98,11.55,4.47,18.11,4.47c3.43,0,6.93-0.45,10.51-1.34c3.58-0.9,7.04-2.31,10.4-4.25 c3.35-1.94,6.45-4.43,9.28-7.49c2.83-3.05,5.14-6.74,6.93-11.07L422.68,963c-2.38,5.97-5.85,11.22-10.4,15.76 c-4.55,4.55-9.73,8.39-15.54,11.51c-5.81,3.13-11.93,5.52-18.34,7.15c-6.41,1.64-12.75,2.46-19,2.46c-11.03,0-21.13-2.38-30.3-7.15 c-9.17-4.77-17.07-10.99-23.7-18.67c-6.63-7.67-11.78-16.4-15.43-26.16C286.32,938.14,284.5,928.19,284.5,918.05z"/>
+<path d="M638.22,896.81v101.74h-30.86V839.8h23.93l82.73,104.2V840.02h30.86v158.53h-25.04L638.22,896.81z"/>
+<path d="M768.58,918.05c0-9.69,1.71-19.27,5.14-28.73c3.43-9.46,8.39-17.92,14.87-25.38 c6.48-7.45,14.42-13.49,23.81-18.11c9.39-4.62,20.12-6.93,32.2-6.93c14.16,0,26.42,3.21,36.78,9.61 c10.36,6.41,18,14.76,22.92,25.04l-23.7,16.32c-1.79-4.47-4.1-8.23-6.93-11.29c-2.83-3.05-5.93-5.48-9.28-7.27 c-3.35-1.79-6.82-3.09-10.4-3.91c-3.58-0.82-7.01-1.23-10.29-1.23c-7.31,0-13.72,1.56-19.23,4.7c-5.52,3.13-10.1,7.19-13.75,12.19 c-3.66,5-6.41,10.66-8.27,16.99c-1.86,6.34-2.79,12.63-2.79,18.89c0,7.01,1.08,13.75,3.24,20.24c2.16,6.48,5.22,12.19,9.17,17.1 c3.95,4.92,8.68,8.87,14.2,11.85c5.51,2.98,11.55,4.47,18.11,4.47c3.43,0,6.93-0.45,10.51-1.34c3.58-0.9,7.04-2.31,10.4-4.25 c3.35-1.94,6.45-4.43,9.28-7.49c2.83-3.05,5.14-6.74,6.93-11.07L906.76,963c-2.38,5.97-5.85,11.22-10.4,15.76 c-4.55,4.55-9.73,8.39-15.54,11.51c-5.81,3.13-11.93,5.52-18.34,7.15c-6.41,1.64-12.75,2.46-19,2.46c-11.03,0-21.13-2.38-30.3-7.15 c-9.17-4.77-17.07-10.99-23.7-18.67c-6.63-7.67-11.78-16.4-15.43-26.16C770.4,938.14,768.58,928.19,768.58,918.05z"/>
+<path d="M1038.01,971.49v27.05H927.78V839.8H1036v27.05h-77.36v38.24h66.85v25.04h-66.85v41.36H1038.01z"/>
+<path d="M1093.69,896.81v101.74h-30.86V839.8h23.93l82.73,104.2V840.02h30.86v158.53h-25.04L1093.69,896.81z"/>
+<path d="M1352.16,866.85h-50.53v131.7h-30.86v-131.7h-50.76V839.8h132.14V866.85z"/>
+<path d="M1372.06,998.55V839.8h70.21c7.3,0,14.05,1.53,20.24,4.58c6.18,3.06,11.51,7.08,15.99,12.07 c4.47,5,7.97,10.66,10.51,16.99c2.53,6.34,3.8,12.71,3.8,19.12c0,10.29-2.57,19.64-7.71,28.06c-5.14,8.42-12.11,14.5-20.91,18.22 l37.34,59.7h-34.88l-33.31-53.21h-30.41v53.21H1372.06z M1402.92,918.28h38.68c2.83,0,5.48-0.67,7.94-2.01 c2.46-1.34,4.58-3.16,6.37-5.48c1.79-2.31,3.21-5.03,4.25-8.16c1.04-3.13,1.56-6.49,1.56-10.06c0-3.73-0.6-7.15-1.79-10.29 c-1.2-3.13-2.8-5.85-4.81-8.16c-2.01-2.31-4.33-4.1-6.93-5.37c-2.61-1.26-5.25-1.9-7.94-1.9h-37.34V918.28z"/>
+<path d="M1522.76,998.55V840.02h30.86v158.53H1522.76z"/>
+<path d="M1577.32,918.05c0-9.69,1.71-19.27,5.14-28.73c3.43-9.46,8.39-17.92,14.87-25.38 c6.48-7.45,14.42-13.49,23.81-18.11c9.39-4.62,20.12-6.93,32.2-6.93c14.16,0,26.42,3.21,36.78,9.61 c10.36,6.41,18,14.76,22.92,25.04l-23.7,16.32c-1.79-4.47-4.1-8.23-6.93-11.29c-2.83-3.05-5.93-5.48-9.28-7.27 c-3.35-1.79-6.82-3.09-10.4-3.91c-3.58-0.82-7.01-1.23-10.29-1.23c-7.31,0-13.72,1.56-19.23,4.7c-5.52,3.13-10.1,7.19-13.75,12.19 c-3.66,5-6.41,10.66-8.27,16.99c-1.86,6.34-2.79,12.63-2.79,18.89c0,7.01,1.08,13.75,3.24,20.24c2.16,6.48,5.22,12.19,9.17,17.1 c3.95,4.92,8.68,8.87,14.2,11.85c5.51,2.98,11.55,4.47,18.11,4.47c3.43,0,6.93-0.45,10.51-1.34c3.58-0.9,7.04-2.31,10.4-4.25 c3.35-1.94,6.45-4.43,9.28-7.49c2.83-3.05,5.14-6.74,6.93-11.07L1715.5,963c-2.39,5.97-5.85,11.22-10.4,15.76 c-4.55,4.55-9.73,8.39-15.54,11.51c-5.81,3.13-11.93,5.52-18.34,7.15c-6.41,1.64-12.75,2.46-19,2.46c-11.03,0-21.13-2.38-30.3-7.15 c-9.17-4.77-17.07-10.99-23.7-18.67c-6.63-7.67-11.78-16.4-15.43-26.16C1579.15,938.14,1577.32,928.19,1577.32,918.05z"/>
+<path d="M651.11,1082.02c-0.69-0.69-1.96-1.64-3.79-2.83c-1.83-1.19-4.07-2.35-6.69-3.49 c-2.63-1.14-5.48-2.1-8.55-2.9c-3.07-0.79-6.19-1.19-9.37-1.19c-5.65,0-9.86,1.04-12.63,3.12c-2.78,2.08-4.16,5.01-4.16,8.77 c0,2.18,0.52,3.99,1.56,5.42c1.04,1.44,2.55,2.7,4.53,3.79c1.98,1.09,4.48,2.08,7.51,2.97c3.02,0.89,6.52,1.83,10.48,2.82 c5.15,1.39,9.83,2.88,14.05,4.46c4.21,1.59,7.78,3.57,10.7,5.95c2.92,2.38,5.18,5.23,6.76,8.55c1.58,3.32,2.38,7.41,2.38,12.26 c0,5.65-1.07,10.48-3.2,14.49c-2.13,4.01-4.98,7.26-8.55,9.74c-3.57,2.48-7.73,4.29-12.49,5.42c-4.76,1.14-9.71,1.71-14.86,1.71 c-7.93,0-15.76-1.19-23.49-3.57c-7.73-2.38-14.67-5.75-20.81-10.11l9.07-17.69c0.89,0.89,2.5,2.06,4.83,3.49 c2.33,1.44,5.08,2.88,8.25,4.31c3.17,1.44,6.69,2.65,10.55,3.64c3.87,0.99,7.83,1.49,11.89,1.49c11.3,0,16.95-3.61,16.95-10.85 c0-2.38-0.65-4.36-1.93-5.95c-1.29-1.58-3.12-2.97-5.5-4.16c-2.38-1.19-5.25-2.28-8.62-3.27c-3.37-0.99-7.13-2.03-11.3-3.12 c-5.05-1.39-9.44-2.9-13.15-4.53c-3.72-1.64-6.82-3.54-9.29-5.72c-2.48-2.18-4.34-4.76-5.57-7.73c-1.24-2.97-1.86-6.49-1.86-10.56 c0-5.35,0.99-10.11,2.97-14.27c1.98-4.16,4.73-7.63,8.25-10.4c3.52-2.77,7.6-4.88,12.26-6.32c4.66-1.43,9.66-2.15,15.02-2.15 c7.43,0,14.27,1.16,20.51,3.49c6.24,2.33,11.69,5.08,16.35,8.25L651.11,1082.02z"/>
+<path d="M724.1,1159.91v-105.39h20.51v105.39H724.1z"/>
+<path d="M811.21,1159.91v-105.54h20.51v87.55h53.81v17.99H811.21z"/>
+<path d="M943.37,1159.91v-105.39h20.51v105.39H943.37z"/>
+<path d="M1024.23,1106.4c0-6.44,1.14-12.81,3.42-19.1c2.28-6.29,5.58-11.91,9.89-16.87 c4.31-4.95,9.59-8.97,15.83-12.04c6.24-3.07,13.38-4.61,21.41-4.61c9.41,0,17.56,2.13,24.45,6.39 c6.89,4.26,11.97,9.81,15.24,16.65l-15.76,10.85c-1.19-2.97-2.73-5.47-4.61-7.51c-1.88-2.03-3.94-3.64-6.17-4.83 c-2.23-1.19-4.53-2.05-6.91-2.6c-2.38-0.54-4.66-0.82-6.84-0.82c-4.86,0-9.12,1.04-12.79,3.12c-3.67,2.08-6.71,4.78-9.14,8.1 c-2.43,3.32-4.26,7.09-5.5,11.3c-1.24,4.21-1.86,8.4-1.86,12.56c0,4.66,0.72,9.14,2.16,13.45c1.43,4.31,3.47,8.1,6.09,11.37 c2.62,3.27,5.77,5.9,9.44,7.88c3.66,1.99,7.68,2.97,12.04,2.97c2.28,0,4.61-0.3,6.99-0.89c2.38-0.6,4.68-1.54,6.91-2.83 c2.23-1.29,4.29-2.95,6.17-4.98c1.88-2.03,3.42-4.48,4.61-7.36l16.8,9.66c-1.59,3.96-3.89,7.46-6.91,10.48s-6.47,5.57-10.33,7.65 c-3.86,2.08-7.93,3.67-12.19,4.76s-8.47,1.64-12.63,1.64c-7.33,0-14.05-1.58-20.14-4.76c-6.09-3.17-11.35-7.31-15.76-12.41 c-4.41-5.1-7.83-10.9-10.26-17.39C1025.44,1119.75,1024.23,1113.14,1024.23,1106.4z"/>
+<path d="M1217.33,1160.65c-7.43,0-14.22-1.51-20.36-4.53c-6.15-3.02-11.42-7.03-15.83-12.04 c-4.41-5-7.8-10.73-10.18-17.17c-2.38-6.44-3.57-13.03-3.57-19.77c0-7.04,1.26-13.77,3.79-20.22c2.53-6.44,6.04-12.14,10.55-17.09 c4.51-4.96,9.83-8.89,15.98-11.82c6.14-2.92,12.83-4.38,20.07-4.38c7.43,0,14.22,1.56,20.36,4.68s11.4,7.21,15.76,12.26 c4.36,5.05,7.73,10.8,10.11,17.24c2.38,6.44,3.57,12.98,3.57,19.62c0,7.04-1.26,13.75-3.79,20.14 c-2.53,6.39-6.02,12.04-10.48,16.95c-4.46,4.9-9.76,8.82-15.91,11.74C1231.25,1159.19,1224.56,1160.65,1217.33,1160.65z M1188.04,1107.14c0,4.56,0.67,8.97,2.01,13.23c1.34,4.26,3.27,8.03,5.8,11.3c2.53,3.27,5.62,5.9,9.29,7.88 c3.67,1.98,7.83,2.97,12.49,2.97c4.76,0,8.94-1.02,12.56-3.05c3.62-2.03,6.67-4.73,9.14-8.1c2.48-3.37,4.36-7.16,5.65-11.37 s1.93-8.5,1.93-12.86c0-4.56-0.7-8.97-2.08-13.23c-1.39-4.26-3.35-8.03-5.87-11.3c-2.53-3.27-5.6-5.87-9.22-7.8 c-3.62-1.93-7.71-2.9-12.26-2.9c-4.76,0-8.94,1.02-12.56,3.05c-3.62,2.03-6.69,4.71-9.22,8.03c-2.53,3.32-4.44,7.09-5.72,11.3 C1188.69,1098.49,1188.04,1102.78,1188.04,1107.14z"/>
+<path d="M1348.59,1092.27v67.64h-20.51v-105.54h15.91l55,69.27v-69.12h20.51v105.39h-16.65L1348.59,1092.27z"/>
+<path d="M508.09,1001.6c-44.76,0-81.18-36.49-81.18-81.35c0-44.86,36.42-81.35,81.18-81.35 c44.76,0,81.18,36.49,81.18,81.35C589.27,965.1,552.85,1001.6,508.09,1001.6z M508.09,845.25c-41.26,0-74.83,33.64-74.83,75 s33.57,75,74.83,75c41.26,0,74.83-33.64,74.83-75S549.35,845.25,508.09,845.25z"/>
+<path d="M508.09,986.66c-36.54,0-66.27-29.79-66.27-66.41c0-36.62,29.73-66.41,66.27-66.41 c36.54,0,66.27,29.79,66.27,66.41C574.36,956.87,544.63,986.66,508.09,986.66z M508.09,860.19c-33.04,0-59.92,26.94-59.92,60.06 c0,33.12,26.88,60.06,59.92,60.06s59.92-26.94,59.92-60.06C568.01,887.13,541.13,860.19,508.09,860.19z"/>
+<path d="M508.09,971.72c-28.32,0-51.36-23.09-51.36-51.47c0-28.38,23.04-51.47,51.36-51.47s51.36,23.09,51.36,51.47 C559.45,948.63,536.41,971.72,508.09,971.72z M508.09,875.13c-24.82,0-45.01,20.24-45.01,45.12s20.19,45.12,45.01,45.12 c24.82,0,45.01-20.24,45.01-45.12S532.91,875.13,508.09,875.13z"/>
+<path d="M508.09,956.78c-20.1,0-36.46-16.39-36.46-36.53c0-20.14,16.35-36.53,36.46-36.53 c20.1,0,36.46,16.39,36.46,36.53C544.55,940.39,528.19,956.78,508.09,956.78z M508.09,890.07c-16.6,0-30.11,13.54-30.11,30.18 c0,16.64,13.51,30.18,30.11,30.18c16.6,0,30.11-13.54,30.11-30.18C538.2,903.61,524.69,890.07,508.09,890.07z"/>
+</svg>
+      </a>
+      <p>Positioning critical components where they are needed most.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Solutions</h4>
+      <a href="#solutions">Component Sourcing</a>
+      <a href="#solutions">Chip Trading</a>
+      <a href="#solutions">Quality Assurance</a>
+      <a href="#stock">Stock / Inventory</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#about">About Us</a>
+      <a href="#team">Team</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Locations</h4>
+      <a href="#global">Los Angeles, CA — HQ</a>
+      <a href="#global" style="color: var(--text-dim);">Austin · Denver · Guadalajara · Ho Chi Minh City</a>
+      <a href="#global" style="color: var(--text-dim); font-size: 0.8rem;">+ 6 Certified Inspection Centers</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Concentric Silicon. All rights reserved.</span>
+    <span>
+      <a href="#" style="color: var(--text-dim); text-decoration: none; font-size: 0.8rem;">Privacy</a>
+      &nbsp;&middot;&nbsp;
+      <a href="#" style="color: var(--text-dim); text-decoration: none; font-size: 0.8rem;">Terms</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+// ─── Navbar scroll effect ───
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// ─── Scroll reveal ───
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, index) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, index * 80);
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+revealElements.forEach(el => revealObserver.observe(el));
+
+// ─── Particle background ───
+const particlesContainer = document.getElementById('particles');
+function createParticle() {
+  const particle = document.createElement('div');
+  particle.className = 'particle';
+  particle.style.left = Math.random() * 100 + '%';
+  particle.style.bottom = '-2px';
+  particle.style.animationDuration = (8 + Math.random() * 12) + 's';
+  particle.style.animationDelay = Math.random() * 5 + 's';
+  particle.style.width = particle.style.height = (1 + Math.random() * 2) + 'px';
+  particlesContainer.appendChild(particle);
+  
+  setTimeout(() => particle.remove(), 20000);
+}
+
+// Create initial batch
+for (let i = 0; i < 30; i++) {
+  setTimeout(createParticle, i * 200);
+}
+setInterval(createParticle, 600);
+
+// ─── Animated globe (canvas-based dot globe) ───
+const canvas = document.createElement('canvas');
+const ctx = canvas.getContext('2d');
+const globeContainer = document.getElementById('globeCanvas');
+globeContainer.appendChild(canvas);
+
+function resizeCanvas() {
+  canvas.width = globeContainer.offsetWidth;
+  canvas.height = globeContainer.offsetHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+// Create dot grid representing a globe
+const dots = [];
+const dotCount = 2000;
+
+for (let i = 0; i < dotCount; i++) {
+  const theta = Math.random() * Math.PI * 2;
+  const phi = Math.acos(2 * Math.random() - 1);
+  dots.push({
+    theta,
+    phi,
+    radius: 0.35 * Math.min(canvas.width, canvas.height),
+    size: 0.5 + Math.random() * 1
+  });
+}
+
+let rotation = 0;
+
+function drawGlobe() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  const cx = canvas.width * 0.5;
+  const cy = canvas.height * 0.5;
+  
+  dots.forEach(dot => {
+    const x = dot.radius * Math.sin(dot.phi) * Math.cos(dot.theta + rotation);
+    const y = dot.radius * Math.cos(dot.phi);
+    const z = dot.radius * Math.sin(dot.phi) * Math.sin(dot.theta + rotation);
+    
+    if (z > 0) return; // Only show front-facing dots
+    
+    const screenX = cx + x;
+    const screenY = cy + y;
+    const depth = (z + dot.radius) / (2 * dot.radius);
+    
+    ctx.beginPath();
+    ctx.arc(screenX, screenY, dot.size * depth, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(234, 192, 106, ${0.15 + depth * 0.3})`;
+    ctx.fill();
+  });
+  
+  rotation += 0.001;
+  requestAnimationFrame(drawGlobe);
+}
+
+drawGlobe();
+
+// ─── Smooth scroll ───
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href === '#') return;
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
